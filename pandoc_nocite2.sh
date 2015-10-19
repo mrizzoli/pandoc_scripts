@@ -3,7 +3,7 @@
 #!/bin/bash
 
 echo "controllo la configurazione.."
-. /home/marco/scripts/pandoc_config.sh
+. /home/marco/pandoc_scripts/pandoc_config.sh
 echo "..."
 
 #prepara header
@@ -34,8 +34,8 @@ echo "...ok"
 
 #compila pdf
 echo "inizio la compilazione del pdf"
-pandoc -S -o main.html --filter pandoc-citeproc --latex-engine=xelatex wp.md
-#pandoc -S -o main.docx --filter pandoc-citeproc -t docx main.md
+#pandoc -S -o main.pdf --filter pandoc-citeproc --latex-engine=xelatex wp.md
+pandoc -S -o main.docx --filter pandoc-citeproc -t docx wp.md
 
 echo "fatto, trovi tutto in " ${percorso}/
-evince ${percorso}/main.pdf
+#evince ${percorso}/main.pdf

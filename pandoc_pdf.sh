@@ -2,7 +2,7 @@
 
 #!/bin/bash
 echo "controllo la configurazione.."
-. /home/marco/Downloads/papers/scripts/pandoc_config.sh
+. /home/marco/pandoc_scripts/pandoc_config.sh
 echo "...ok"
 #pulizia
 

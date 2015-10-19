@@ -5,9 +5,9 @@ percorso="/home/marco/wd"
 paper=$1
 author="Marco Rizzoli"
 #title=$2
-title="Note\ Comparative"
-biblio=/home/marco/biblio/pistoso.bib
-data=$(date +'%d/%m/%Y')
+#title="Bibliografia"
+biblio=/home/marco/Downloads/biblio/benenati.bib
+#data=$(date +'%d/%m/%Y')
 header="/tmp/header"
 nocite="/tmp/nocite"
 geometry="margin=3cm"
