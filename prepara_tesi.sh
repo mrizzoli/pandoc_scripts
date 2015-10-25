@@ -61,7 +61,7 @@ biber template_tesi
 xelatex template_tesi.tex
 
 git clone https://mrizzoli:${GH_TOKEN}@github.com/mrizzoli/tesi.git output/
-cp *.pdf output/
+
 cd output
 
 git config --global user.email "marco@rizzoli.me.uk"
@@ -69,6 +69,7 @@ git config --global user.name "Marco Rizzoli"
 
 git checkout -b tmp
 git pull origin tmp
+cp ${origine}/*.pdf ${origine}/output/ 
 git add *.pdf
 git commit -m "update pdf"
 git push origin tmp
