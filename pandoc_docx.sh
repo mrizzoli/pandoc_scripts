@@ -19,4 +19,4 @@ done
 
 cat note.md >> /tmp/tesi/tesi.md
 
-pandoc -S -s /tmp/tesi/tesi.md -o /home/marco/Downloads/tesi.docx
+pandoc -S -s x/tmp/tesi/tesi.md -o /home/marco/Downloads/tesi.docx
