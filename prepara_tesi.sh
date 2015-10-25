@@ -2,15 +2,6 @@
 set -e  # Fail on errors
 set -x  # Verbosity all the way
 
-# get token
-## da sistemate usando variabili criptate in .travis.yml
-
-### curl https://bitbucket.org/site/oauth2/access_token -d grant_type=client_credentials -u bSNv6FyLLwsr7jMzC7:pT3TAGUVcBBqMqyhD5BCEcwDTnvmg8kc
-
-## Crea repo da bitbucket
-##mkdir -p markdown
-##git clone https://mrizzoli@bitbucket.org/mrizzoli/tesi.git markdown/
-
 ## Setta variabili e percorsi
 src=$PWD/"markdown"
 origine=$PWD
@@ -35,7 +26,6 @@ wget -O Chapter6.md ${cap6}
 wget -O note.md ${note}
 
 ##concatena md
-
 
 for file in Chapter*
 do
@@ -78,13 +68,7 @@ git config --global user.email "marco@rizzoli.me.uk"
 git config --global user.name "Marco Rizzoli"
 
 git checkout -b tmp
+git pull origin tmp
 git add *.pdf
 git commit -m "update pdf"
 git push origin tmp
-
-
-#git remote set-url origin https://mrizzoli:${GH_TOKEN}@github.com/mrizzoli/tesi.git
-#git checkout -b pdf
-#git pull origin pdf
-#git checkout
-#git pull origin master
