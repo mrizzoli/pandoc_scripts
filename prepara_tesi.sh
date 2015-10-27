@@ -23,9 +23,9 @@ sudo ./awscli-bundle/install -i /usr/local/aws -b /usr/local/bin/aws
 
 ##configura aws
 
-export AWS_ACCESS_KEY_ID=${aws-id}
-export AWS_SECRET_ACCESS_KEY=${aws-key}
-export AWS_DEFAULT_REGION=${aws-region}
+export AWS_ACCESS_KEY_ID=${id}
+export AWS_SECRET_ACCESS_KEY=${key}
+export AWS_DEFAULT_REGION=${region}
 
 
 ##scarica file sorgente
