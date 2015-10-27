@@ -14,9 +14,9 @@ mkdir -p ${temporanea}
 mkdir -p ${dest}
 
 ##aws cli
-curl -O https://bootstrap.pypa.io/get-pip.py
-sudo python get-pip.py
-sudo pip install awscli
+#curl -O https://bootstrap.pypa.io/get-pip.py
+#sudo python get-pip.py
+#sudo pip install awscli
 curl "https://s3.amazonaws.com/aws-cli/awscli-bundle.zip" -o "awscli-bundle.zip"
 unzip awscli-bundle.zip
 sudo ./awscli-bundle/install -i /usr/local/aws -b /usr/local/bin/aws
