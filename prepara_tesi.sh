@@ -65,3 +65,5 @@ xelatex template_tesi.tex
 biber template_tesi
 xelatex template_tesi.tex
 
+aws s3 cp *.pdf s3://tesi-src/
+
