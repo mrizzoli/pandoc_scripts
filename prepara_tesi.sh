@@ -14,9 +14,6 @@ mkdir -p ${temporanea}
 mkdir -p ${dest}
 
 ##aws cli
-#curl -O https://bootstrap.pypa.io/get-pip.py
-#sudo python get-pip.py
-#sudo pip install awscli
 curl "https://s3.amazonaws.com/aws-cli/awscli-bundle.zip" -o "awscli-bundle.zip"
 unzip awscli-bundle.zip
 sudo ./awscli-bundle/install -i /usr/local/aws -b /usr/local/bin/aws
@@ -31,16 +28,7 @@ export AWS_DEFAULT_REGION=${region}
 ##scarica file sorgente
 cd ${src}
 
-aws s3 sync s3://tesi-src .
-
-#wget -O benenati.bib ${benenati}
-#wget -O Chapter1.md ${cap1}
-#wget -O Chapter2.md ${cap2}
-#wget -O Chapter3.md ${cap3}
-#wget -O Chapter4.md ${cap4}
-#wget -O Chapter5.md ${cap5}
-#wget -O Chapter6.md ${cap6}
-#wget -O note.md ${note}
+aws s3 sync s3://tesi-src/markdown/ .
 
 ##concatena md
 
