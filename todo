@@ -1,0 +1,28 @@
+#!/bin/bash
+
+##if no args:
+
+if [ -z "$1" ]
+	then
+		geeknote find --tags todo | grep -o '@.*' | sort
+else
+	#check $2
+	if [ -z "$2" ]
+		then
+			echo "missing note name"
+			exit 1
+	else
+
+	#if args 'add'
+		if [ "$1" == "add" ]
+			then
+				geeknote create --title "$2" --tags "todo"
+	#if args 'done'
+		elif [ "$1" == "done" ]
+			then
+				geeknote edit --note "$2" --tags "done"
+		else
+			echo "what are you trying to do?"
+		fi
+	fi
+fi

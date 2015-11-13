@@ -3,10 +3,10 @@ set -e  # Fail on errors
 set -x  # Verbosity all the way
 
 ## Setta variabili e percorsi
-src=$PWD/"markdown"
 origine=$PWD
-temporanea=$PWD/"tmp"
-dest=$PWD/"Chapters"
+src=$origine/"markdown"
+temporanea=$origine/"tmp"
+dest=$origine/"Chapters"
 
 ##prepara ambiente
 mkdir -p ${src}
@@ -14,16 +14,18 @@ mkdir -p ${temporanea}
 mkdir -p ${dest}
 
 ##aws cli
-curl "https://s3.amazonaws.com/aws-cli/awscli-bundle.zip" -o "awscli-bundle.zip"
-unzip awscli-bundle.zip
-sudo ./awscli-bundle/install -i /usr/local/aws -b /usr/local/bin/aws
+if [ ! -f /usr/local/bin/aws ];	then
+	echo "scarico aws"
+	curl "https://s3.amazonaws.com/aws-cli/awscli-bundle.zip" -o "awscli-bundle.zip"
+	unzip awscli-bundle.zip
+	sudo ./awscli-bundle/install -i /usr/local/aws -b /usr/local/bin/aws
 
-##configura aws
+	##configura aws
 
-export AWS_ACCESS_KEY_ID=${id}
-export AWS_SECRET_ACCESS_KEY=${key}
-export AWS_DEFAULT_REGION=${region}
-
+	export AWS_ACCESS_KEY_ID=${id}
+	export AWS_SECRET_ACCESS_KEY=${key}
+	export AWS_DEFAULT_REGION=${region}
+fi
 
 ##scarica file sorgente
 cd ${src}
