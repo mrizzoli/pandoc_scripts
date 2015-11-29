@@ -1,0 +1,17 @@
+#!/bin/bash
+
+geeknote find --tags "calendar" | grep -o @.* | sort > /tmp/dates.txt
+if [ -f /tmp/calendar.txt ]
+then
+    rm /tmp/calendar.txt
+fi
+    
+file="/tmp/dates.txt"
+cat $file | while read line 
+do
+    echo "$line">>"/tmp/calendar.txt" 
+    geeknote show "$line" | grep "*" >> "/tmp/calendar.txt"
+    echo -e '\n' >> "/tmp/calendar.txt"
+done <"$file"
+#echo $dates
+#cat /tmp/calendar.txt

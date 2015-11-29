@@ -4,9 +4,9 @@
 #set -x
 set -e
 
-cd /media/removable/UNTITLED/downloads
+cd $1
 
-for file in *
+for file in *.mp4
 do
   if [ ! -d "$file" ]
   then
