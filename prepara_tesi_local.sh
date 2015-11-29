@@ -43,7 +43,10 @@ xelatex template_tesi.tex
 bibtex template_tesi
 xelatex template_tesi.tex
 
-#mv ${dest}/template_tesi.pdf ~/Documents/tesi_"$(date +%F_%T)".pdf
+newname="tesi_"$(date +%F_%T)".pdf"
+export newname
+
+mv ${dest}/template_tesi.pdf ${dest}/${newname}
 
 wget -O send_file.py https://raw.githubusercontent.com/mrizzoli/pandoc_scripts/master/send_file.py
 python send_file.py
