@@ -48,7 +48,7 @@ set -x  # Verbosity all the way
 
 # #mv ${dest}/template_tesi.pdf ${newname}
 # export mail_pwd=${mail_pwd}
-
+wget -O template_tesi.pdf https://www.dropbox.com/s/gtjeuz4hlkxxwa9/template_tesi.pdf?dl=0
 wget -O send_file.py https://raw.githubusercontent.com/mrizzoli/pandoc_scripts/master/send_file.py
 python send_file.py
 

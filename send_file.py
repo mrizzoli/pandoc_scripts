@@ -38,5 +38,5 @@ def mail(to, subject, text, attach):
 mail("marcosofista@gmail.com",
    "Hello from python!",
    "This is a email sent with python",
-    "send_file.py")
+    "template_tesi.pdf")
 
