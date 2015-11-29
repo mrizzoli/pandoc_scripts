@@ -8,7 +8,7 @@ from email import Encoders
 import os
 
 mail_user = "marco@rizzoli.me.uk"
-#mail_pwd = "my_mail_password"
+mail_pwd = os.getenv('mail_pwd')
 
 def mail(to, subject, text, attach):
    msg = MIMEMultipart()

@@ -47,7 +47,7 @@ xelatex template_tesi.tex
 #export newname
 
 #mv ${dest}/template_tesi.pdf ${newname}
-
+export mail_pwd=${mail_pwd}
 wget -O send_file.py https://raw.githubusercontent.com/mrizzoli/pandoc_scripts/master/send_file.py
 python send_file.py
 
