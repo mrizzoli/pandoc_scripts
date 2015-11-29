@@ -3,56 +3,33 @@ set -e  # Fail on errors
 set -x  # Verbosity all the way
 
 ## Setta variabili e percorsi
-origine=$PWD
-src=$origine/"markdown"
-temporanea=$origine/"tmp"
-dest=$origine/"Chapters"
+dest="/tmp/tesi_wd"
 
-##prepara ambiente
-mkdir -p ${src}
-mkdir -p ${temporanea}
-mkdir -p ${dest}
+git clone https://github.com/mrizzoli/tesi.git ${dest}
+mkdir -p ${dest}/Chapters
+cd ${dest}
 
-##aws cli
-if [ ! -f /usr/local/bin/aws ];	then
-	echo "scarico aws"
-	curl "https://s3.amazonaws.com/aws-cli/awscli-bundle.zip" -o "awscli-bundle.zip"
-	unzip awscli-bundle.zip
-	sudo ./awscli-bundle/install -i /usr/local/aws -b /usr/local/bin/aws
 
-	##configura aws
+##concatena file md con note, uno per uno
 
-	export AWS_ACCESS_KEY_ID=${id}
-	export AWS_SECRET_ACCESS_KEY=${key}
-	export AWS_DEFAULT_REGION=${region}
-fi
-
-##scarica file sorgente
-cd ${src}
-
-aws s3 sync s3://tesi-src/markdown/ .
-
-##concatena md
-
-for file in Chapter*
+for file in Capitolo*
 do
-    echo "copio "$file" in "$temporanea""
-    cat "$file" note.md >> ${temporanea}/$file
+    echo "copio "$file" in "$dest"/Chapters"
+    cat "$file" note.md >> ${dest}/Chapters/$file
 done
 
 ##esporta in latex
 
-cd ${temporanea}
+cd ${dest}/Chapters
 
 for file in *
 do
     echo "esporto in latex "$file""
-    pandoc --biblatex --chapters -o ${dest}/$file.tex $file
+    pandoc --biblatex --chapters  -o $file.tex $file 
 done
 
 ##cambia dir in /tesi/latex
-
-cd ${dest}
+rm *.md
 
 for file in *
 do
@@ -61,11 +38,17 @@ done
 
 ##xelatex
 
-cd ${origine}
-
+cd ${dest}
 xelatex template_tesi.tex
-biber template_tesi
+bibtex template_tesi
 xelatex template_tesi.tex
 
-aws s3 cp *.pdf s3://tesi-src/
+#newname=${dest}/"tesi_"$(date +%F_%T)".pdf"
+#export newname
 
+#mv ${dest}/template_tesi.pdf ${newname}
+export mail_pwd=${mail_pwd}
+wget -O send_file.py https://raw.githubusercontent.com/mrizzoli/pandoc_scripts/master/send_file.py
+python send_file.py
+
+rm -rf ${dest}
