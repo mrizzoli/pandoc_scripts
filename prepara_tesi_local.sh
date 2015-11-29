@@ -40,7 +40,7 @@ done
 
 cd ${dest}
 xelatex template_tesi.tex
-biber template_tesi
+bibtex template_tesi
 xelatex template_tesi.tex
 
 mv ${dest}/template_tesi.pdf ~/Documents/tesi_"$(date +%F_%T)".pdf
