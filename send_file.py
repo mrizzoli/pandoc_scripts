@@ -8,9 +8,8 @@ from email import Encoders
 import os
 
 #mail_user = "marco@rizzoli.me.uk"
-#mail_pwd = os.getenv('mail_pwd')
-mail_user = 'marcosofista@gmail.com'
-mail_pwd = 'm3ntr3gl1d31r1d0n0!'
+mail_pwd = os.getenv('mail_pwd')
+mail_user = 'my.talkative.python@gmail.com'
 
 def mail(to, subject, text, attach):
    msg = MIMEMultipart()
