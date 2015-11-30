@@ -35,8 +35,8 @@ def mail(to, subject, text, attach):
    # Should be mailServer.quit(), but that crashes...
    mailServer.close()
 
-mail("marcosofista@gmail.com",
-   "Hello from python!",
-   "This is a email sent with python",
+mail("marco@rizzoli.me.uk",
+   "Here's your file",
+   "This is an email sent automatically",
     "/tmp/tesi_wd/template_tesi.pdf")
 
