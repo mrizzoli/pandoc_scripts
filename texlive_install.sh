@@ -1,4 +1,6 @@
 #!/bin/bash
+set -e
+set -x
 
 tar xvf install-tl-unx.tar.gz 
 cd install-tl-2*
