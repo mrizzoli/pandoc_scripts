@@ -28,5 +28,5 @@ def mail(to, subject, text):
 
 mail("marcosofista@gmail.com",
    "Hello from python!",
-   "This is a email sent with python)
+     "This is a email sent with python")
 
