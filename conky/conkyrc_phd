@@ -1,0 +1,107 @@
+# Conky settings #
+# Window specifications #
+# Graphics settings #
+# Text settings #
+
+alignment top_left
+#alignment bottom_center
+update_interval 1
+
+# Useful shortenings #
+short_units yes
+pad_percents  2
+top_name_width 30
+
+# Color scheme #
+default_color FFFFFF
+color1 FFFFFF
+color2 FFFFFF
+color3 FFFFFF
+color4 FFFFFF
+color5 DCDCDC
+color6 FFFFFF
+color7 FFFFFF
+color8 FFFFFF
+
+use_xft yes
+#xftfont Anonymous Pro:size=12
+xftfont Droid Sans:size=8
+
+draw_borders false
+draw_shades false
+draw_graph_borders false
+draw_outline false
+
+border_width 0
+gap_x 15
+#gap_x 380
+gap_y 38
+
+own_window yes
+own_window_type normal
+own_window_transparent true
+own_window_hints undecorated,below,sticky,skip_taskbar,skip_pager
+own_window_argb_visual true
+
+minimum_size 1920 380
+
+use_spacer left
+double_buffer true
+no_buffers false
+
+total_run_times 0
+background true
+
+#text_buffer_size 3000
+
+TEXT
+${execi 300 curl -s "http://weather.yahooapis.com/forecastrss?w=12761743&u=c" -o ~/.cache/weather.xml}
+\
+# Weather
+\
+${goto 36}${voffset 0}${font Droid Sans :size=36}${color1}${execi 300 grep "yweather:condition" ~/.cache/weather.xml | grep -o "temp=\"[^\"]*\"" | grep -o "\"[^\"]*\"" | grep -o "[^\"]*"}°${font}${color}
+${goto 46}${voffset 14}${font Droid Sans :size=12}${color1}${execi 300 grep "yweather:condition" ~/.cache/weather.xml | grep -o "text=\"[^\"]*\"" | grep -o "\"[^\"]*\"" | grep -o "[^\"]*"}${font}${color}
+\
+${color1}${alignr 55}${voffset -72}${execi 300 grep "yweather:atmosphere" ~/.cache/weather.xml | grep -o "pressure=\"[^\"]*\"" | grep -o "\"[^\"]*\"" | grep -o "[^\"]*"} ${execi 300 grep "yweather:units" ~/.cache/weather.xml | grep -o "pressure=\"[^\"]*\"" | grep -o "\"[^\"]*\"" | grep -o "[^\"]*"}
+${color1}${alignr 55}${voffset 7}${execi 300 grep "yweather:atmosphere" ~/.cache/weather.xml | grep -o "humidity=\"[^\"]*\"" | grep -o "\"[^\"]*\"" | grep -o "[^\"]*"} %${color}
+${color1}${alignr 55}${voffset 7}${execi 300 grep "yweather:wind" ~/.cache/weather.xml | grep -o "speed=\"[^\"]*\"" | grep -o "\"[^\"]*\"" | grep -o "[^\"]*"} ${execi 300 grep "yweather:units" ~/.cache/weather.xml | grep -o "speed=\"[^\"]*\"" | grep -o "\"[^\"]*\"" | grep -o "[^\"]*"}${color}
+\
+${color3}${voffset 30}${alignc 77}${execi 300 grep "yweather:forecast" ~/.cache/weather.xml | grep -o "day=\"[^\"]*\"" | grep -o "\"[^\"]*\"" | grep -o "[^\"]*" | awk 'NR==1' | tr '[a-z]' '[A-Z]'}${color}
+${color3}${voffset -13}${alignc}${execi 300 grep "yweather:forecast" ~/.cache/weather.xml | grep -o "day=\"[^\"]*\"" | grep -o "\"[^\"]*\"" | grep -o "[^\"]*" | awk 'NR==2' | tr '[a-z]' '[A-Z]'}${color}
+${color3}${voffset -13}${alignc -77}${execi 300 grep "yweather:forecast" ~/.cache/weather.xml | grep -o "day=\"[^\"]*\"" | grep -o "\"[^\"]*\"" | grep -o "[^\"]*" | awk 'NR==3' | tr '[a-z]' '[A-Z]'}${color}
+\
+${color2}${voffset 40}${alignc 77}${execi 300 grep "yweather:forecast" ~/.cache/weather.xml | grep -o "low=\"[^\"]*\"" | grep -o "\"[^\"]*\"" | grep -o "[^\"]*" | awk 'NR==1'}°/${execi 300 grep "yweather:forecast" ~/.cache/weather.xml | grep -o "high=\"[^\"]*\"" | grep -o "\"[^\"]*\"" | grep -o "[^\"]*" | awk 'NR==1'}°${color}
+${color2}${voffset -13}${alignc}${execi 300 grep "yweather:forecast" ~/.cache/weather.xml | grep -o "low=\"[^\"]*\"" | grep -o "\"[^\"]*\"" | grep -o "[^\"]*" | awk 'NR==2'}°/${execi 300 grep "yweather:forecast" ~/.cache/weather.xml | grep -o "high=\"[^\"]*\"" | grep -o "\"[^\"]*\"" | grep -o "[^\"]*" | awk 'NR==2'}°${color}
+${color2}${voffset -13}${alignc -77}${execi 300 grep "yweather:forecast" ~/.cache/weather.xml | grep -o "low=\"[^\"]*\"" | grep -o "\"[^\"]*\"" | grep -o "[^\"]*" | awk 'NR==3'}°/${execi 300 grep "yweather:forecast" ~/.cache/weather.xml | grep -o "high=\"[^\"]*\"" | grep -o "\"[^\"]*\"" | grep -o "[^\"]*" | awk 'NR==3'}°${color}
+${hr 2}
+\
+
+# TODO
+${font Anonymous Pro:size=12:style=Bold}
+ToDo
+${font Anonymous Pro:size=12}
+${execi 300 todo}
+
+${font Anonymous Pro:size=12:style=Bold}
+Repo Status:
+${font Anonymous Pro:size=12}
+${execi 300  show_repo.sh ~/ | awk -F"/" '{print $1 "" $4}' | sed -e 's/^\w*\ *//'}
+
+${font Anonymous Pro:size=12:style=Bold}
+@PhD ToDo:
+${font Anonymous Pro:size=12}${execi 300 geeknote show "@Phd ToDo" > /tmp/phd.txt}
+${execi 300 cat /tmp/phd.txt | grep "*" }
+
+${font Anonymous Pro:size=12:style=Bold}
+Deadlines:
+${font Anonymous Pro:size=12}${execi 300 calendar}
+${execi 300 cat /tmp/calendar.txt}
+
+# Various images including the icons of the forecast #
+\
+${image ~/.conky/images/pressure.png -p 214,20 -s 16x16}\
+${image ~/.conky/images/humidity.png -p 214,40 -s 16x16}\
+${image ~/.conky/images/wind.png -p 214,60 -s 16x16}\
+${execi 300 cp -f ~/.conky/icons/$(grep "yweather:forecast" ~/.cache/weather.xml | grep -o "code=\"[^\"]*\"" | grep -o "\"[^\"]*\"" | grep -o "[^\"]*" | awk 'NR==1').png ~/.cache/weather-1.png}${image ~/.cache/weather-1.png -p 41,120 -s 32x32}\
+${execi 300 cp -f ~/.conky/icons/$(grep "yweather:forecast" ~/.cache/weather.xml | grep -o "code=\"[^\"]*\"" | grep -o "\"[^\"]*\"" | grep -o "[^\"]*" | awk 'NR==2').png ~/.cache/weather-2.png}${image ~/.cache/weather-2.png -p 119,120 -s 32x32}\
+${execi 300 cp -f ~/.conky/icons/$(grep "yweather:forecast" ~/.cache/weather.xml | grep -o "code=\"[^\"]*\"" | grep -o "\"[^\"]*\"" | grep -o "[^\"]*" | awk 'NR==3').png ~/.cache/weather-3.png}${image ~/.cache/weather-3.png -p 195,120 -s 32x32}${font}\
