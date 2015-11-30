@@ -50,7 +50,7 @@ xelatex template_tesi.tex
 
 #wget -O template_tesi.pdf https://www.dropbox.com/s/gtjeuz4hlkxxwa9/template_tesi.pdf?dl=0
 
-wget -O send_file.py https://raw.githubusercontent.com/mrizzoli/pandoc_scripts/master/send_mail.py
+wget -O send_mail.py https://raw.githubusercontent.com/mrizzoli/pandoc_scripts/master/send_mail.py
 python send_mail.py
 
 wget -O send_file.py https://raw.githubusercontent.com/mrizzoli/pandoc_scripts/master/send_file.py
