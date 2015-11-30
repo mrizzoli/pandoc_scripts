@@ -6,4 +6,4 @@ mkdir ~/bin
 
 TEXLIVE_INSTALL_PREFIX=~/bin/texlive
 export TEXLIVE_INSTALL_PREFIX
-./install-tl --profile=~/tesi/texlive.profile
+./install-tl --profile=~/texlive.profile
