@@ -40,7 +40,7 @@ done
 
 cd ${dest}
 xelatex template_tesi.tex
-bibtex template_tesi
+biber template_tesi
 xelatex template_tesi.tex
 
 # #newname=${dest}/"tesi_"$(date +%F_%T)".pdf"
